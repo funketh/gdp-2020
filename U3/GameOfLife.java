@@ -38,32 +38,46 @@ public class GameOfLife {
                 }
             }
             StdDraw.show(COOLDOWN);
-            oneRound(board, X, Y);
+            board = oneRound(board, X, Y);
         }
     }
 
-    static void oneRound(boolean[][] board, int X, int Y) {
+    static boolean[][] oneRound(boolean[][] board, int X, int Y) {
+        boolean[][] newBoard = deepcopy(board);
         for (int i = 0; i < X; i++) {
             for (int j = 0; j < Y; j++) {
                 int n = neighbours(board, X, Y, i, j);
 
                 if (!board[i][j] && n == 3)
-                    board[i][j] = true;
+                    newBoard[i][j] = true;
                 else if (board[i][j] && (n == 2 || n == 3))
-                    board[i][j] = true;
+                    newBoard[i][j] = true;
                 else
-                    board[i][j] = false;
+                    newBoard[i][j] = false;
             }
         }
+        return newBoard;
+    }
+
+    static boolean[][] deepcopy(boolean[][] arr) {
+        if (arr.length == 0)
+            return new boolean[][] {};
+
+        boolean[][] newArr = new boolean[arr.length][arr[0].length];
+        for (int i = 0; i < arr.length; i++)
+            newArr[i] = arr[i].clone();
+        return newArr;
     }
 
     static int neighbours(boolean[][] board, int X, int Y, int x, int y) {
         int n = 0;
         for (int i = x - 1; i <= x + 1; i++) {
             for (int j = y - 1; j <= y + 1; j++) {
-                int adj_k = adjustOverflow(X, i);
-                int adj_l = adjustOverflow(Y, j);
-                if (board[adj_k][adj_l])
+                int adj_i = adjustOverflow(X, i);
+                int adj_j = adjustOverflow(Y, j);
+                if (adj_i == x && adj_j == y)
+                    continue;
+                if (board[adj_i][adj_j])
                     n++;
             }
         }
