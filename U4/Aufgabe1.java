@@ -6,11 +6,11 @@ public class Aufgabe1 {
         // ob die Aussage richtig (true)
         // oder falsch (false) ist.
         boolean a = true; // Aussage A
-        boolean b = true; // Aussage B
-        boolean c = true; // Aussage C
-        boolean d = true; // Aussage D
+        boolean b = false; // Aussage B
+        boolean c = false; // Aussage C
+        boolean d = false; // Aussage D
         boolean e = true; // Aussage E
-        boolean f = true; // Aussage F
+        boolean f = false; // Aussage F
 
         // ab hier bitte nichts mehr ändern
         boolean[] antworten = { a, b, c, d, e, f };
@@ -24,11 +24,11 @@ public class Aufgabe1 {
         // Geben Sie hier bitte für jede Aussage an,
         // ob die Aussage richtig (true)
         // oder falsch (false) ist.
-        boolean a = true; // Aussage A
+        boolean a = false; // Aussage A
         boolean b = true; // Aussage B
-        boolean c = true; // Aussage C
-        boolean d = true; // Aussage D
-        boolean e = true; // Aussage E
+        boolean c = false; // Aussage C
+        boolean d = false; // Aussage D
+        boolean e = false; // Aussage E
         boolean f = true; // Aussage F
 
         // ab hier bitte nichts mehr ändern
@@ -44,10 +44,10 @@ public class Aufgabe1 {
         // ob die Aussage richtig (true)
         // oder falsch (false) ist.
         boolean a = true; // Aussage A
-        boolean b = true; // Aussage B
-        boolean c = true; // Aussage C
+        boolean b = false; // Aussage B
+        boolean c = false; // Aussage C
         boolean d = true; // Aussage D
-        boolean e = true; // Aussage E
+        boolean e = false; // Aussage E
         boolean f = true; // Aussage F
 
         // ab hier bitte nichts mehr ändern
@@ -57,16 +57,16 @@ public class Aufgabe1 {
         return antworten;
     }
 
-    // Teilaufgabe a)
+    // Teilaufgabe d)
     public static boolean[] aufgabe_d(boolean ergebnisseAusgeben) {
         // Geben Sie hier bitte für jede Aussage an,
         // ob die Aussage richtig (true)
         // oder falsch (false) ist.
-        boolean a = true; // Aussage A
-        boolean b = true; // Aussage B
+        boolean a = false; // Aussage A
+        boolean b = false; // Aussage B
         boolean c = true; // Aussage C
-        boolean d = true; // Aussage D
-        boolean e = true; // Aussage E
+        boolean d = false; // Aussage D
+        boolean e = false; // Aussage E
         boolean f = true; // Aussage F
 
         // ab hier bitte nichts mehr ändern
@@ -76,17 +76,17 @@ public class Aufgabe1 {
         return antworten;
     }
 
-    // Teilaufgabe a)
+    // Teilaufgabe e)
     public static boolean[] aufgabe_e(boolean ergebnisseAusgeben) {
         // Geben Sie hier bitte für jede Aussage an,
         // ob die Aussage richtig (true)
         // oder falsch (false) ist.
-        boolean a = true; // Aussage A
-        boolean b = true; // Aussage B
-        boolean c = true; // Aussage C
+        boolean a = false; // Aussage A
+        boolean b = false; // Aussage B
+        boolean c = false; // Aussage C
         boolean d = true; // Aussage D
         boolean e = true; // Aussage E
-        boolean f = true; // Aussage F
+        boolean f = false; // Aussage F
 
         // ab hier bitte nichts mehr ändern
         boolean[] antworten = { a, b, c, d, e, f };
