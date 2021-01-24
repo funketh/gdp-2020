@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Iterator;
 
 class Riddle {
     public static void main(String[] args) {
@@ -11,9 +12,7 @@ class Riddle {
             System.out.println("Die Zahl muss zwischen 1 und 15 liegen.");
             System.exit(1);
         }
-        ArrayList<int[]> list = new ArrayList<int[]>();
-        riddle(N, new int[] {}, list);
-        int l = list.toArray().length;
+        int l = riddle(N);
         if (l == 0)
             System.out.println("keine Loesung");
         else if (l == 1)
@@ -22,37 +21,57 @@ class Riddle {
             System.out.println(l + " Loesungen");
     }
 
-    static void riddle(int n, int[] a, ArrayList<int[]> solutions) {
-        int[] indices = new int[n];
+    static int riddle(int n) {
+        ArrayList<int[]> list = new ArrayList<int[]>();
         int[] counter = new int[n];
+        int[] a = new int[2*n];
+        int[] solutionNum = {0};
+        for (int x = 1; x <= n; x++){
+            counter[x-1] += 1;
+            a[0] = x;
+            riddleHelper(n, a, 1, counter, list, solutionNum);
+            a[0] = 0;
+            counter[x-1] -= 1;
+        }
+        return solutionNum[0];
+    }
 
-        for (int i = 0; i < a.length; i++) {
-            for (int x = 1; x <= n; x++)
-                if (counter[x - 1] == 1 && i - indices[x - 1] - 1 > x)
-                    return;
+    static void riddleHelper(int n, int[] a, int aLength, int[] counter, ArrayList<int[]> solutions, int[] solutionNum) {
+        int l = aLength;
 
-            if (counter[a[i] - 1] > 1)
+        int c = counter[a[l-1]-1];
+        if (c > 2)
+            return;
+        if (c == 2) {
+            int i = l-1 - a[l-1]-1;
+            if (i < 0 || a[i] != a[l-1])
                 return;
-            counter[a[i] - 1] += 1;
-
-            int lastIndex = indices[a[i] - 1];
-            if (lastIndex != 0 && i - lastIndex != a[i])
-                return;
-            indices[a[i] - 1] = i + 1;
         }
 
-        if (a.length == 2 * n) {
-            for (int[] b : solutions) {
+        for (int i = 0; i < l-1; i++)
+            if (i + a[i] + 1 == l - 1)
+                if (counter[a[i]-1] != 2 && a[i] != a[l-1])
+                    return;
+
+        if (a[a.length-1] != 0) {
+            Iterator<int[]> iter = solutions.iterator();
+            while (iter.hasNext()) {
+                int[] b = iter.next();
+
                 boolean areEqual = true;
-                for (int i = 0; i < a.length; i++) {
+                for (int i = 0; i < l; i++) {
                     if (a[i] != b[b.length-1 - i])
                         areEqual = false;
                 }
-                if (areEqual)
+
+                if (areEqual) {
+                    iter.remove();
                     return;
+                }
             }
 
-            solutions.add(a);
+            solutions.add(a.clone());
+            solutionNum[0]++;
 
             if (n >= 10)
                 return;
@@ -62,14 +81,12 @@ class Riddle {
             return;
         }
 
-        for (int x = 1; x <= n; x++)
-            riddle(n, append(a, x), solutions);
-    }
-
-    static int[] append(int[] a, int i) {
-        int[] b = new int[a.length + 1];
-        System.arraycopy(a, 0, b, 0, a.length);
-        b[a.length] = i;
-        return b;
+        for (int x = 1; x <= n; x++){
+            counter[x-1] += 1;
+            a[l] = x;
+            riddleHelper(n, a, aLength + 1, counter, solutions, solutionNum);
+            a[l] = 0;
+            counter[x-1] -= 1;
+        }
     }
 }
