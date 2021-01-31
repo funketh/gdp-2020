@@ -8,8 +8,6 @@ public class MazeSolver {
 
         int c = maze[row][col];
         maze[row][col] = 2;
-        draw(maze);
-        StdDraw.show(100);
 
         // go left if possible
         if (col-1 >= 0 && maze[row][col-1] != 0)
@@ -22,8 +20,6 @@ public class MazeSolver {
                 return true;
 
         maze[row][col] = c;
-        draw(maze);
-        StdDraw.show(100);
         return false;
     }
 
