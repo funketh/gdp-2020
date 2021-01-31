@@ -1,70 +1,68 @@
 program HammingDecoder 
 // -----------------------------------------------------------------------------
 
-// R[F] is always 1
-10: 7F01   R[F] <- 0001                  
 
-11: 81FF   read R[1] 
-12: 1E1F   R[E] <- R[1] + R[F]           
-13: CE38   if (R[E] == 0) goto 38        
-14: 82FF   read R[2]                     
-15: 83FF   read R[3]  
-16: 84FF   read R[4]
-17: 85FF   read R[5]                         
-18: 86FF   read R[6]                      
-19: 87FF   read R[7]                      
+10: 81FF   read R[1] 
+11: 2E01   R[E] <- -R[1]                 
+12: DE37   if (R[E] > 0) goto 37       
+13: 82FF   read R[2]                     
+14: 83FF   read R[3]  
+15: 84FF   read R[4]
+16: 85FF   read R[5]                         
+17: 86FF   read R[6]                      
+18: 87FF   read R[7]                      
 
-1A: 4812   R[8] <- R[1] ^ R[2]            
-1B: 4884   R[8] <- R[8] ^ R[4]                  
+19: 4812   R[8] <- R[1] ^ R[2]            
+1A: 4884   R[8] <- R[8] ^ R[4]                  
 
-1C: 4913   R[9] <- R[1] ^ R[3]           
-1D: 4994   R[9] <- R[9] ^ R[4]                   
+1B: 4913   R[9] <- R[1] ^ R[3]           
+1C: 4994   R[9] <- R[9] ^ R[4]                   
 
-1E: 4A23   R[A] <- R[2] ^ R[3]           
-1F: 4AA4   R[A] <- R[A] ^ R[4] 
+1D: 4A23   R[A] <- R[2] ^ R[3]           
+1E: 4AA4   R[A] <- R[A] ^ R[4] 
 
 // not (1)
-20: 4B85   R[B] <- R[8] ^ R[5]
+1F: 4B85   R[B] <- R[8] ^ R[5]
 
 // not (2)        
-21: 4C96   R[C] <- R[9] ^ R[6]
+20: 4C96   R[C] <- R[9] ^ R[6]
 
 // not (3)           
-22: 4DA7   R[D] <- R[A] ^ R[7]
+21: 4DA7   R[D] <- R[A] ^ R[7]
 
 // not (1) and not (2) and not (3)
-23: 3EBC   R[E] <- R[D] & R[E]
-24: 3EED   R[E] <- R[E] & R[D]
-25: CE28   if (R[E] == 0) goto 28        
+22: 3EBC   R[E] <- R[D] & R[E]
+23: 3EED   R[E] <- R[E] & R[D]
+24: CE27   if (R[E] == 0) goto 27        
 // negate m4
-26: 444F   R[4] <- R[4] ^ R[F]           
-27: C033   goto 33                       
+25: 444F   R[4] <- R[4] ^ R[F]           
+26: C032   goto 32                       
 
 // not (1) and not (2) and (3)
-28: 3EBC   R[E] <- R[B] & R[C]           
-29: CE2C   if (R[E] == 0) goto 2C        
+27: 3EBC   R[E] <- R[B] & R[C]           
+28: CE2B   if (R[E] == 0) goto 2B        
 // negate m1
-2A: 411F   R[1] <- R[1] ^ R[F]           
-2B: C033   goto 33                       
+29: 411F   R[1] <- R[1] ^ R[F]           
+2A: C032   goto 32                      
 
 // not (1) and (2) and not (3)
-2C: 3EBD   R[E] <- R[B] & R[D]           
-2D: CE30   if (R[E] == 0) goto 30        
+2B: 3EBD   R[E] <- R[B] & R[D]           
+2C: CE2F   if (R[E] == 0) goto 2F        
 // negate m2
-2E: 422F   R[2] <- R[2] ^ R[F]           
-2F: C033   goto 33                       
+2D: 422F   R[2] <- R[2] ^ R[F]           
+2E: C032   goto 32                       
 
 // (1) and not (2) and not (3)
-30: 3ECD   R[E] <- R[C] & R[D]           
-31: CE33   if (R[E] == 0) goto 33        
+2F: 3ECD   R[E] <- R[C] & R[D]           
+30: CE32   if (R[E] == 0) goto 32        
 // negate m3
-32: 433F   R[3] <- R[3] ^ R[F]           
+31: 433F   R[3] <- R[3] ^ R[F]           
 
-33: 91FF   write R[1]                    
-34: 92FF   write R[2]                    
-35: 93FF   write R[3]                    
-36: 94FF   write R[4]                     
+32: 91FF   write R[1]                    
+33: 92FF   write R[2]                    
+34: 93FF   write R[3]                    
+35: 94FF   write R[4]                     
 
-37: C010   goto 10                       
+36: C010   goto 10                       
 
-38: 0000   halt                          
+37: 0000   halt                          
