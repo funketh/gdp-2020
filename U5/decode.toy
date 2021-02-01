@@ -35,28 +35,28 @@ program HammingDecoder
 23: 3EED   R[E] <- R[E] & R[D]
 24: CE27   if (R[E] == 0) goto 27        
 // negate m4
-25: 444F   R[4] <- R[4] ^ R[F]           
+25: 444E   R[4] <- R[4] ^ R[E]           
 26: C032   goto 32                       
 
 // not (1) and not (2) and (3)
 27: 3EBC   R[E] <- R[B] & R[C]           
 28: CE2B   if (R[E] == 0) goto 2B        
 // negate m1
-29: 411F   R[1] <- R[1] ^ R[F]           
+29: 411E   R[1] <- R[1] ^ R[E]           
 2A: C032   goto 32                      
 
 // not (1) and (2) and not (3)
 2B: 3EBD   R[E] <- R[B] & R[D]           
 2C: CE2F   if (R[E] == 0) goto 2F        
 // negate m2
-2D: 422F   R[2] <- R[2] ^ R[F]           
+2D: 422E   R[2] <- R[2] ^ R[E]           
 2E: C032   goto 32                       
 
 // (1) and not (2) and not (3)
 2F: 3ECD   R[E] <- R[C] & R[D]           
 30: CE32   if (R[E] == 0) goto 32        
 // negate m3
-31: 433F   R[3] <- R[3] ^ R[F]           
+31: 433E   R[3] <- R[3] ^ R[E]           
 
 32: 91FF   write R[1]                    
 33: 92FF   write R[2]                    
