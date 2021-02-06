@@ -1,7 +1,7 @@
 import java.io.IOException;
 
 class testOktadoku {
-	public static void main (String args []) throws IOException {
+	public static void main (String args []) {
 		Oktadoku.Variante v = Oktadoku.Variante.normal;
 		if (args.length > 0 && args[0].equals("-x"))
 		    v = Oktadoku.Variante.mitDiagonalen;

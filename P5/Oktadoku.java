@@ -14,12 +14,12 @@ class Oktadoku {
         this.songoku = new Integer[8][8];
     }
 
-    public void read() throws IOException {
+    public void read() {
         Scanner sc = new Scanner(System.in).useDelimiter("");
 
         for (int i = 0; i < songoku.length; i++) {
             for (int j = 0; j < songoku[i].length; j++) {
-                String s = Character.toString((char) sc.next().charAt(0));
+                String s = sc.next().substring(0, 1);
                 Integer v;
                 try {
                     v = Integer.parseInt(s);
